@@ -1,0 +1,206 @@
+---
+title: "MSEG201 Homework 5"
+author: "Kyle Wodehouse"
+format: 
+    html:
+        code-fold: true
+        html-math-method: katex
+---
+
+# Steady State Diffusion
+
+This can be solved using Fick's First law of diffusion:
+$$J = -D \frac{dC}{dx}$$
+
+This can be rearranged for the concentration gradient and solved for the high-pressure concentration
+$$\frac{dC}{dx} = -\frac{J}{D}$$
+
+$$\Delta C = C_{\text{low-pressure}} - C_{\text{high-pressure}} = - \frac{J}{D}\Delta x$$
+
+$$C_{\text{high-pressure}} = C_{\text{low-pressure}} + \frac{J}{D}\Delta x$$
+
+
+Now plugging in the given values:
+$$ C_{\text{high-pressure}} = 0.5\,\text{kg/m}^3 + \left(0.002\,\text{m}\right) \frac{2.48\times10^{-8}\ \text{kg/m}^2\text{s}}{4.50\times10^{-11}\ \text{m}^2\text{/s}} = 1.60\,\text{kg/m}^3 $$
+
+# Diffusion of Aluminum in Silicon
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+diffusivity = np.array([8e-11, 5e-11, 6e-12, 2e-12, 9e-13, 6e-14, 2e-14, 4e-15])
+temperature = np.array([1290, 1250, 1170, 1100, 1040, 950, 900, 850]) + 273.15
+
+x = 1/temperature
+y = np.log(diffusivity)
+m,b = np.polyfit(x,y,1)
+
+
+fig,ax = plt.subplots(figsize=(9,7), dpi=100)
+
+ax.plot(x,y, label='Diffusivity Data')
+ax.plot(x,m*x+b, label=f'y = {m:.1f}x + {b:.2f}')
+ax.set_xlabel('1/Temperature')
+ax.set_ylabel('$\ln$(D)')
+ax.set_xticks(np.linspace(x.min(), x.max(), 5))
+ax.legend()
+```
+
+### a)
+This has effectively plotted $\ln(D) = \ln(D_0) + \frac{1}{T}\left(\frac{-Q_d}{R}\right)$. The intercept is $\ln(D_0)$, so $D_0 = \exp(b) = 58.4\, \text{cm}^2/\text{s}$. The slope is $\frac{-Q_d}{R}$, so $Q_d = -mR = 3.38$ eV
+
+### b)
+
+Going back to the equation
+
+$$ \ln(D(T=1000^{\circ}C)) = -39202.5 \times (1000 + 273.15)^{-1} + 1.77 = -29.02$$
+
+$$ D = \exp(-29.02) = 2.48\times10^{-13} \, \text{cm}^2/\text{s}$$
+
+# Doping and Diffusion
+
+First we need to find D!
+
+$$
+D = 2.14\times10^{-5} \exp\left[ \frac{-3.65}{\left( 8.62 \times 10^{-5} \right)\left( 1200 + 273.15 \right)} \right]
+$$
+
+$$
+D = 7.036  \times 10^{-18}
+$$
+
+Now rearranging the thin source solution
+
+$$
+\frac{C\sqrt{\pi D t}}{B} = \exp\left[ \frac{-x^2}{4Dt} \right]
+$$
+
+$$
+x =  \sqrt[2]{-4Dt\ln\left[ \frac{C\sqrt{\pi D t}}{B} \right]}
+$$
+
+$$
+x = \sqrt{-4\,(7.036  \times 10^{-18})(1.75 \times 3600) \ln\left[ \frac{ 3.63 \times 10^{17} \sqrt{\pi (7.036  \times 10^{-18}) (1.75 \times 3600)}}{5.2 \times 10^3} \right]}
+$$
+
+```{python}
+import numpy as np
+
+D = (2.14e-5)*np.exp((-3.65)/(8.62e-5 * 1473.15))
+t = 1.75 * 3600
+B = 3.63e17
+C = 5e23
+
+x = np.sqrt(-1*(np.log(C * np.sqrt(np.pi * D * t) / B)) * 4 * D * t)
+
+print(f"x = {x:.2e} m".replace("e-07", " x 10^-7"))
+```
+
+
+# Carburization
+
+### a) 
+It matches up with the semi-infinite bar solution since there is in initial concentration throughout the system, and the diffusion takes place on mostly the first 4mm and hopefully the gear is much thicker than 4mm (the concentration gradient never reaches the end of the 'bar')
+
+### b)
+Remembering the semi-infinite bar solution and reorganizing for t
+$$
+    \frac{C(x,t) - C_0}{C_s - C_x} = 1 - \text{erf}\left(\frac{x}{2\sqrt{Dt}}\right)
+$$
+$$
+    \text{erf}\left(\frac{x}{2\sqrt{Dt}}\right) = 0.75
+$$
+
+And using wolfram alpha for the inverse erf
+$$
+    \frac{x}{2\sqrt{Dt}} = 0.8134
+$$
+$$
+t = \frac{1}{D} \left[ \frac{x}{2\times0.8134} \right]^2
+$$
+
+finding D 
+$$
+D = D_0 \exp \left( \frac{-Q}{RT} \right) = 2.5\times10^{-5} \exp\left( \frac{-1.48\times10^5}{8.314 \times 1373} \right) = 5.384 \times 10^{-11}\,\text{m}^2/\text{s}
+$$
+
+and finally plugging in 
+$$
+    t = \frac{1}{5.384 \times 10^{-11}\,\text{m}^2/\text{s}} \left[ \frac{0.004\,\text{m}}{2\times0.8134} \right]^2 = 103328.84\,\text{sec}
+$$
+
+and into the right units
+$$
+112291.4\,\text{sec} \times \frac{1\,\text{hour}}{3600\,\text{sec}} = 31.19\,\text{hours}
+$$
+
+### c)
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import erf
+
+C_0 = 0.10
+C_S = 0.90
+t = 103328.840 # seconds!
+D = 5.851e-11
+
+x = np.linspace(0,4,100)
+y = (1 - erf((x/1000) / (2 * np.sqrt(D*t))))*(C_S - C_0) + C_0
+
+fig,ax = plt.subplots(figsize=(9,7), dpi=100)
+
+
+ax.plot(x,y, label='Profile')
+ax.set_xlabel('Depth into surface (mm)')
+ax.set_ylabel('Carbon Concentration (wt.%)')
+ax.set_xlim(0,4)
+ax.hlines(0.9, 0,4, color='red', label='$C_s$', linestyle='--', linewidth=0.6)
+ax.hlines(0.3, 0,4, color='green', label='$C_s$', linestyle='--', linewidth=0.6)
+
+ax.legend()
+ax.set_title('Concentration Profile');
+```
+
+
+### d)
+Now D is 
+$$
+D = 2.5\times10^{-5} \exp\left( \frac{-1.48\times10^5}{8.314 \times 973} \right) = 2.834 \times 10^{-13}\,\text{m}^2/\text{s}
+$$
+
+so the time is
+$$
+    t = \frac{1}{\left(2.834 \times 10^{-13}\,\text{m}^2/\text{s}\right)(3600)} \left[ \frac{0.004\,\text{m}}{2\times0.8134} \right]^2 =  5926\,\text{hours}
+$$
+
+<!-- 
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import erf
+
+C_0 = 0.10
+C_S = 0.90
+t = 5928.8 * 3600
+D = 2.834e-13
+
+x = np.linspace(0,4,100)
+y = (1 - erf((x/1000) / (2 * np.sqrt(D*t))))*(C_S - C_0) + C_0
+
+fig,ax = plt.subplots(figsize=(9,7), dpi=100)
+
+
+ax.plot(x,y, label='Temperature Profile')
+ax.set_xlabel('Depth into surface (mm)')
+ax.set_ylabel('Carbon Concentration (wt.%)')
+ax.set_xlim(0,4)
+ax.hlines(0.9, 0,4, color='red', label='$C_s$', linestyle='--', linewidth=0.6)
+ax.hlines(0.3, 0,4, color='green', label='$C_s$', linestyle='--', linewidth=0.6)
+
+ax.legend()
+ax.set_title('Temperature Profile')
+``` -->
