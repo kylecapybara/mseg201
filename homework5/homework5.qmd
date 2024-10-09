@@ -48,7 +48,7 @@ ax.legend()
 ```
 
 ### a)
-This has effectively plotted $\ln(D) = \ln(D_0) + \frac{1}{T}\left(\frac{-Q_d}{R}\right)$. The intercept is $\ln(D_0)$, so $D_0 = \exp(b) = 58.4\, \text{cm}^2/\text{s}$. The slope is $\frac{-Q_d}{R}$, so $Q_d = -mR = 3.38$ eV
+This has effectively plotted $\ln(D) = \ln(D_0) + \frac{1}{T}\left(\frac{-Q_d}{R}\right)$. The intercept is $\ln(D_0)$, so $D_0 = \exp(b) = 5.85\, \text{cm}^2/\text{s}$. The slope is $\frac{-Q_d}{R}$, so $Q_d = -mR = 3.38$ eV/atom or $2.03\times10^{24}$ eV/mol
 
 ### b)
 
@@ -81,7 +81,7 @@ x =  \sqrt[2]{-4Dt\ln\left[ \frac{C\sqrt{\pi D t}}{B} \right]}
 $$
 
 $$
-x = \sqrt{-4\,(7.036  \times 10^{-18})(1.75 \times 3600) \ln\left[ \frac{ 3.63 \times 10^{17} \sqrt{\pi (7.036  \times 10^{-18}) (1.75 \times 3600)}}{5.2 \times 10^3} \right]}
+x = \sqrt{-4\,(7.036  \times 10^{-18})(1.75 \times 3600) \ln\left[ \frac{ 5\times 10^{23} \sqrt{\pi (7.036  \times 10^{-18}) (1.75 \times 3600)}}{3.63 \times 10^{17}} \right]}
 $$
 
 ```{python}

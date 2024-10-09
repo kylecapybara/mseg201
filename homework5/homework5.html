@@ -156,7 +156,7 @@ window.Quarto = {
 </section>
 <section id="diffusion-of-aluminum-in-silicon" class="level1">
 <h1>Diffusion of Aluminum in Silicon</h1>
-<div id="25db76ff" class="cell" data-execution_count="1">
+<div id="b1a55595" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -189,7 +189,7 @@ window.Quarto = {
 </div>
 <section id="a" class="level3">
 <h3 class="anchored" data-anchor-id="a">a)</h3>
-<p>This has effectively plotted <span class="math inline">\ln(D) = \ln(D_0) + \frac{1}{T}\left(\frac{-Q_d}{R}\right)</span>. The intercept is <span class="math inline">\ln(D_0)</span>, so <span class="math inline">D_0 = \exp(b) = 58.4\, \text{cm}^2/\text{s}</span>. The slope is <span class="math inline">\frac{-Q_d}{R}</span>, so <span class="math inline">Q_d = -mR = 3.38</span> eV</p>
+<p>This has effectively plotted <span class="math inline">\ln(D) = \ln(D_0) + \frac{1}{T}\left(\frac{-Q_d}{R}\right)</span>. The intercept is <span class="math inline">\ln(D_0)</span>, so <span class="math inline">D_0 = \exp(b) = 5.85\, \text{cm}^2/\text{s}</span>. The slope is <span class="math inline">\frac{-Q_d}{R}</span>, so <span class="math inline">Q_d = -mR = 3.38</span> eV/atom or <span class="math inline">2.03\times10^{24}</span> eV/mol</p>
 </section>
 <section id="b" class="level3">
 <h3 class="anchored" data-anchor-id="b">b)</h3>
@@ -215,9 +215,9 @@ D = 7.036  \times 10^{-18}
 x =  \sqrt[2]{-4Dt\ln\left[ \frac{C\sqrt{\pi D t}}{B} \right]}
 </span></p>
 <p><span class="math display">
-x = \sqrt{-4\,(7.036  \times 10^{-18})(1.75 \times 3600) \ln\left[ \frac{ 3.63 \times 10^{17} \sqrt{\pi (7.036  \times 10^{-18}) (1.75 \times 3600)}}{5.2 \times 10^3} \right]}
+x = \sqrt{-4\,(7.036  \times 10^{-18})(1.75 \times 3600) \ln\left[ \frac{ 5\times 10^{23} \sqrt{\pi (7.036  \times 10^{-18}) (1.75 \times 3600)}}{3.63 \times 10^{17}} \right]}
 </span></p>
-<div id="f2b6f172" class="cell" data-execution_count="2">
+<div id="9050f5bf" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -266,7 +266,7 @@ D = D_0 \exp \left( \frac{-Q}{RT} \right) = 2.5\times10^{-5} \exp\left( \frac{-1
 </section>
 <section id="c" class="level3">
 <h3 class="anchored" data-anchor-id="c">c)</h3>
-<div id="2367b468" class="cell" data-execution_count="3">
+<div id="b22973bc" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
