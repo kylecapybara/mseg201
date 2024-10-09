@@ -156,7 +156,7 @@ window.Quarto = {
 </section>
 <section id="diffusion-of-aluminum-in-silicon" class="level1">
 <h1>Diffusion of Aluminum in Silicon</h1>
-<div id="b1a55595" class="cell" data-execution_count="1">
+<div id="641317f0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -217,7 +217,7 @@ x =  \sqrt[2]{-4Dt\ln\left[ \frac{C\sqrt{\pi D t}}{B} \right]}
 <p><span class="math display">
 x = \sqrt{-4\,(7.036  \times 10^{-18})(1.75 \times 3600) \ln\left[ \frac{ 5\times 10^{23} \sqrt{\pi (7.036  \times 10^{-18}) (1.75 \times 3600)}}{3.63 \times 10^{17}} \right]}
 </span></p>
-<div id="9050f5bf" class="cell" data-execution_count="2">
+<div id="f97596e4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -266,7 +266,7 @@ D = D_0 \exp \left( \frac{-Q}{RT} \right) = 2.5\times10^{-5} \exp\left( \frac{-1
 </section>
 <section id="c" class="level3">
 <h3 class="anchored" data-anchor-id="c">c)</h3>
-<div id="b22973bc" class="cell" data-execution_count="3">
+<div id="a331e8ef" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -278,26 +278,27 @@ D = D_0 \exp \left( \frac{-Q}{RT} \right) = 2.5\times10^{-5} \exp\left( \frac{-1
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">103328.840</span> <span class="co"># seconds!</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="fl">5.851e-11</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">100</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">12</span>,<span class="dv">100</span>)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> erf((x<span class="op">/</span><span class="dv">1000</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.sqrt(D<span class="op">*</span>t))))<span class="op">*</span>(C_S <span class="op">-</span> C_0) <span class="op">+</span> C_0</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>,<span class="dv">7</span>), dpi<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax.plot(x,y, label<span class="op">=</span><span class="st">'Profile'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax.plot(x,y, label<span class="op">=</span><span class="st">'Concentration Profile'</span>)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Depth into surface (mm)'</span>)</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Carbon Concentration (wt.%)'</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>,<span class="dv">4</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.9</span>, <span class="dv">0</span>,<span class="dv">4</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'$C_s$'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.3</span>, <span class="dv">0</span>,<span class="dv">4</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'$C_s$'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Concentration Profile'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>,<span class="dv">12</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.9</span>, <span class="dv">0</span>,<span class="dv">20</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'$C_s$'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.3</span>, <span class="dv">0</span>,<span class="dv">20</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'$C_{4\,mm}$'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.1</span>, <span class="dv">0</span>,<span class="dv">20</span>, color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'$C_o$'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Concentration Profile'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="homework5_files/figure-html/cell-4-output-1.png" width="779" height="623" class="figure-img"></p>
+<p><img src="homework5_files/figure-html/cell-4-output-1.png" width="777" height="623" class="figure-img"></p>
 </figure>
 </div>
 </div>
